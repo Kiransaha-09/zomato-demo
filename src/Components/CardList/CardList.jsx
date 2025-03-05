@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import YourCard from "../YourCart/YourCart";
+
 export default function CardList(props) {
   const [cards, setCards] = useState([]);
   const [cartItem, setCartItem] = useState([]);
@@ -7,7 +8,6 @@ export default function CardList(props) {
   const [totalProduct, setTotalProduct] = useState(0);
   const [pageArray, setPageArray] = useState([]);
   const [value, setValue] = useState(10);
-
   const totalPages = Math.ceil(totalProduct / value);
 
   // Handles page change on click on page button 
