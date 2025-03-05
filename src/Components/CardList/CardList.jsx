@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import YourCard from "../YourCart/YourCart";
+import { Pagination } from "../Pagination/Pagination";
 
 export default function CardList(props) {
   const [cards, setCards] = useState([]);
@@ -10,19 +11,19 @@ export default function CardList(props) {
   const [value, setValue] = useState(10);
   const totalPages = Math.ceil(totalProduct / value);
 
-  // Handles page change on click on page button 
-  const handleClick = (pageNumber) => {   
+  // Handles page change on click on page button
+  const handleClick = (pageNumber) => {
     const skip = (pageNumber - 1) * value;
     fetchCards(skip);
     searchProduct(skip);
   };
- 
+
   // Handles items added to cart
   const handleAddToCart = (item) => {
     setCartItem((prev) => [...prev, item]);
   };
 
-  //Render item list in the UI 
+  //Render item list in the UI
   const fetchCards = (skip = 0) => {
     setIsLoading(true);
     fetch(`https://dummyjson.com/products?limit=${value}&skip=${skip}`)
@@ -57,7 +58,6 @@ export default function CardList(props) {
       fetchCards();
     }
   }, [props.searchText]);
-
 
   //Handles pagination
   const getNumberOfPages = () => {
@@ -109,23 +109,12 @@ export default function CardList(props) {
                 );
               })}
             </div>
-            <div className="pages">
-              {pageArray.map((item, index) => {
-                return (
-                  <div key={index}>
-                    <button onClick={() => handleClick(item)}>{item}</button>
-                  </div>
-                );
-              })}
-              <div>
-                <select value={value} onChange={(event) => handleChange(event)}>
-                  <option value="10">10</option>
-                  <option value="20">20</option>
-                  <option value="50">50</option>
-                  <option value="100">100</option>
-                </select>
-              </div>
-            </div>
+            <Pagination
+              pageArray={pageArray}
+              value={value}
+              handleChange={handleChange}
+              handleClick={handleClick}
+            />
           </div>
           <YourCard cartItem={cartItem} setCartItem={setCartItem} />
         </>
