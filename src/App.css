@@ -75,3 +75,51 @@
   display: flex;
   gap: 5px;
 }
+.cardheader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.homescreen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.homecontainer {
+  display: grid;
+  justify-content: center;
+  gap: 5px;
+}
+.handlelogin {
+  display: flex;
+  justify-content: center;
+  button {
+    cursor: pointer;
+  }
+}
+.inputfield {
+  display: flex;
+  gap: 10px;
+}
+.cart-layout{
+  display: flex;
+  gap:10px;
+}
+.Product-details{
+  display: flex;
+  align-items: center;
+  padding: 40px;
+}
+.Each-Product{
+  padding: 20px;
+}
+.additional-details{
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.back-button{
+  margin: 10px;
+}

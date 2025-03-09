@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import YourCard from "../YourCart/YourCart";
 import { Pagination } from "../Pagination/Pagination";
+import { useNavigate } from "react-router-dom";
 
 export default function CardList(props) {
   const [cards, setCards] = useState([]);
@@ -10,6 +11,7 @@ export default function CardList(props) {
   const [pageArray, setPageArray] = useState([]);
   const [value, setValue] = useState(10);
   const totalPages = Math.ceil(totalProduct / value);
+  const [searchText, setSearchText] = useState("");
 
   // Handles page change on click on page button
   const handleClick = (pageNumber) => {
@@ -42,7 +44,7 @@ export default function CardList(props) {
   const searchProduct = (skip = 0) => {
     setIsLoading(true);
     fetch(
-      `https://dummyjson.com/products/search?q=${props.searchText}&value=${value}&skip=${skip}`
+      `https://dummyjson.com/products/search?q=${searchText}&value=${value}&skip=${skip}`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -52,12 +54,13 @@ export default function CardList(props) {
       });
   };
   useEffect(() => {
-    if (props.searchText.length > 0) {
+    debugger;
+    if (searchText.length > 0) {
       searchProduct();
     } else {
       fetchCards();
-    }
-  }, [props.searchText]);
+     }
+  }, [searchText]);
 
   //Handles pagination
   const getNumberOfPages = () => {
@@ -76,18 +79,43 @@ export default function CardList(props) {
     setValue(e.target.value);
   };
 
+  const handleSearch = (e) => {
+    setSearchText(e.target.value);
+  };
+  const navigate = useNavigate();
+  const backNavigation = () => {
+    navigate("/");
+  };
+  const handleProductdeatils = (id) => {
+    navigate(`/product-details/${id}`);
+  };
   return (
     <>
+      <div className="cardheader">
+        <button onClick={backNavigation}>Back</button>
+        <h1 className="header">Desserts</h1>
+        <input
+          type="text"
+          placeholder=" Search..."
+          className="search-cart"
+          onChange={(e) => handleSearch(e)}
+        ></input>
+      </div>
       {isLoading ? (
         <div className="loader"></div>
       ) : (
-        <>
+        <div className="cart-layout">
           <div className="main-layout">
             <div className="grid-container">
               {cards.map((card) => {
                 const cartText = cartItem.some((item) => item.id === card.id);
                 return (
-                  <div key={card.id}>
+                  <div
+                    key={card.id}
+                    onClick={() => {
+                      handleProductdeatils(card.id);
+                    }}
+                  >
                     <div>
                       <img
                         src={card.thumbnail}
@@ -96,7 +124,12 @@ export default function CardList(props) {
                       />
                     </div>
                     <div className="card-btn">
-                      <button onClick={() => handleAddToCart(card)}>
+                      <button
+                        onClick={(e) => {
+                          handleAddToCart(card);
+                          // e.stopPropagation();
+                        }}
+                      >
                         {cartText ? "Added to Cart" : "Add to Cart"}
                       </button>
                     </div>
@@ -117,7 +150,7 @@ export default function CardList(props) {
             />
           </div>
           <YourCard cartItem={cartItem} setCartItem={setCartItem} />
-        </>
+        </div>
       )}
     </>
   );
