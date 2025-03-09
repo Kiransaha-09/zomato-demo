@@ -54,12 +54,11 @@ export default function CardList(props) {
       });
   };
   useEffect(() => {
-    debugger;
     if (searchText.length > 0) {
       searchProduct();
     } else {
       fetchCards();
-     }
+    }
   }, [searchText]);
 
   //Handles pagination
