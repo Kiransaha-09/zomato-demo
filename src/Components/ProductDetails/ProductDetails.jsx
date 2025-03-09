@@ -13,8 +13,8 @@ export default function ProductDetails() {
   };
   useEffect(() => {
     getProductById();
-    console.log(productDeatils);
   }, [params.id]);
+
   const handleReturnPolicy = () => {
     setShowReturnPolicy(true);
   };
