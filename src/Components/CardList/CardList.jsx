@@ -126,7 +126,7 @@ export default function CardList(props) {
                       <button
                         onClick={(e) => {
                           handleAddToCart(card);
-                          // e.stopPropagation();
+                           e.stopPropagation();
                         }}
                       >
                         {cartText ? "Added to Cart" : "Add to Cart"}
