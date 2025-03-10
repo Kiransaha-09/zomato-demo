@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import YourCard from "../YourCart/YourCart";
 import { Pagination } from "../Pagination/Pagination";
 import { useNavigate } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 export default function CardList(props) {
   const [cards, setCards] = useState([]);
@@ -81,12 +82,16 @@ export default function CardList(props) {
   const handleSearch = (e) => {
     setSearchText(e.target.value);
   };
+  //Handles navigation from cart screen to log-in page 
   const navigate = useNavigate();
   const backNavigation = () => {
     navigate("/");
   };
+  // Handles navigation from product deatils screen to cart screen 
   const handleProductdeatils = (id) => {
     navigate(`/product-details/${id}`);
+  //  <Link to={`/product-details/${id}`}></Link>
+    
   };
   return (
     <>
@@ -146,6 +151,7 @@ export default function CardList(props) {
               value={value}
               handleChange={handleChange}
               handleClick={handleClick}
+              cards={cards}
             />
           </div>
           <YourCard cartItem={cartItem} setCartItem={setCartItem} />
