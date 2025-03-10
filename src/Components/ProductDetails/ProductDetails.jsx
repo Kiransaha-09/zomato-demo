@@ -23,6 +23,7 @@ export default function ProductDetails() {
     navigate("/cards");
   };
   return (
+    // Render card details in UI 
     <>
       <button className="back-button" onClick={backButton}>
         Back
@@ -42,10 +43,10 @@ export default function ProductDetails() {
           </div>
         </div>
         <div className="Each-Product">
-          <h1>Title: {productDeatils.title}</h1>
-          <h2>Brand: {productDeatils.brand}</h2>
-          <p>Price: {productDeatils.price}</p>
-          <p>Rating: {productDeatils.rating}</p>
+          <h1>{productDeatils.title}</h1>
+          <h2>{productDeatils.brand}</h2>
+          <p>$ {productDeatils.price}</p>
+          <p>Review: {productDeatils.rating}</p>
         </div>
       </div>
     </>
