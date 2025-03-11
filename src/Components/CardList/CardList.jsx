@@ -3,6 +3,7 @@ import YourCard from "../YourCart/YourCart";
 import { Pagination } from "../Pagination/Pagination";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { API_ROUTES } from "../apiRoutes.constants";
 
 export default function CardList(props) {
   const [cards, setCards] = useState([]);
@@ -109,7 +110,7 @@ export default function CardList(props) {
                 const cartText = cartItem.some((item) => item.id === card.id);
                 return (
                   <div>
-                    <Link to={`/product-details/${card.id}`} className="carditem">
+                    <Link to={`/${API_ROUTES.PRODUCT_DETAILS}/${card.id}`} className="carditem">
                       <div key={card.id}>
                         <div>
                           <img

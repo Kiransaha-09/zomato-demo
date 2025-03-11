@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { API_ROUTES } from "../apiRoutes.constants";
 
 export default function Home() {
   const [emailError, setEmailError] = useState("");
@@ -16,7 +17,7 @@ export default function Home() {
     }
     console.log(emailError, passwordError);
     if (emailValue !== "" && passwordValue !== "") {
-      navigate("/cards");
+      navigate(API_ROUTES.PRODUCTS);
     }
   };
   const handleEmailChange = (e) => {
