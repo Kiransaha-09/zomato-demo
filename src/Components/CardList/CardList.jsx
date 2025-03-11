@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import YourCard from "../YourCart/YourCart";
 import { Pagination } from "../Pagination/Pagination";
 import { useNavigate } from "react-router-dom";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function CardList(props) {
   const [cards, setCards] = useState([]);
@@ -82,17 +82,16 @@ export default function CardList(props) {
   const handleSearch = (e) => {
     setSearchText(e.target.value);
   };
-  //Handles navigation from cart screen to log-in page 
+  //Handles navigation from cart screen to log-in page
   const navigate = useNavigate();
   const backNavigation = () => {
     navigate("/");
   };
-  // Handles navigation from product deatils screen to cart screen 
-  const handleProductdeatils = (id) => {
-    navigate(`/product-details/${id}`);
-  //  <Link to={`/product-details/${id}`}></Link>
-    
-  };
+  // Handles navigation from product deatils screen to cart screen
+  // const handleProductdeatils = (id) => {
+  //   navigate(`/product-details/${id}`);
+  //   //  <Link to={`/product-details/${id}`}></Link>
+  // };
   return (
     <>
       <div className="cardheader">
@@ -114,34 +113,33 @@ export default function CardList(props) {
               {cards.map((card) => {
                 const cartText = cartItem.some((item) => item.id === card.id);
                 return (
-                  <div
-                    key={card.id}
-                    onClick={() => {
-                      handleProductdeatils(card.id);
-                    }}
-                  >
-                    <div>
-                      <img
-                        src={card.thumbnail}
-                        alt="cake"
-                        style={{ height: 300, width: 250 }}
-                      />
-                    </div>
-                    <div className="card-btn">
-                      <button
-                        onClick={(e) => {
-                          handleAddToCart(card);
-                          e.stopPropagation();
-                        }}
-                      >
-                        {cartText ? "Added to Cart" : "Add to Cart"}
-                      </button>
-                    </div>
-                    <div className="card-content">
-                      <p>{card.title}</p>
-                      <p>{card.description}</p>
-                      <p>{card.price}</p>
-                    </div>
+                  <div>
+                    <Link to={`/product-details/${card.id}`} className="carditem">
+                      <div key={card.id}>
+                        <div>
+                          <img
+                            src={card.thumbnail}
+                            alt="cake"
+                            style={{ height: 300, width: 250 }}
+                          />
+                        </div>
+                        <div className="card-btn">
+                          <button
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleAddToCart(card);
+                            }}
+                          >
+                            {cartText ? "Added to Cart" : "Add to Cart"}
+                          </button>
+                        </div>
+                        <div className="card-content">
+                          <p>{card.title}</p>
+                          <p>{card.description}</p>
+                          <p>{card.price}</p>
+                        </div>
+                      </div>
+                    </Link>
                   </div>
                 );
               })}

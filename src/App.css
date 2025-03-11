@@ -123,3 +123,7 @@
 .back-button{
   margin: 10px;
 }
+.carditem{
+  text-decoration: none;
+  color:black;
+}

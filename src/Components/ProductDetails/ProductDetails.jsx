@@ -45,8 +45,8 @@ export default function ProductDetails() {
         <div className="Each-Product">
           <h1>{productDeatils.title}</h1>
           <h2>{productDeatils.brand}</h2>
-          <p>$ {productDeatils.price}</p>
-          <p>Review: {productDeatils.rating}</p>
+          <p>${productDeatils.price}</p>
+          <p>Review:{productDeatils.rating}</p>
         </div>
       </div>
     </>
