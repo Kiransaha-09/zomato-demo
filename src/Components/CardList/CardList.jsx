@@ -87,11 +87,6 @@ export default function CardList(props) {
   const backNavigation = () => {
     navigate("/");
   };
-  // Handles navigation from product deatils screen to cart screen
-  // const handleProductdeatils = (id) => {
-  //   navigate(`/product-details/${id}`);
-  //   //  <Link to={`/product-details/${id}`}></Link>
-  // };
   return (
     <>
       <div className="cardheader">
