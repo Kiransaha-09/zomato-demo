@@ -15,7 +15,6 @@ export default function Home() {
     if (passwordValue === "") {
       setPasswordError("Password is Required");
     }
-    console.log(emailError, passwordError);
     if (emailValue !== "" && passwordValue !== "") {
       navigate(API_ROUTES.PRODUCTS);
     }

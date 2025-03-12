@@ -2,18 +2,18 @@ import React, { useState, useEffect } from "react";
 import YourCard from "../YourCart/YourCart";
 import { Pagination } from "../Pagination/Pagination";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { API_ROUTES } from "../apiRoutes.constants";
+import ProductCards from "../ProductCards/ProductCards";
+import SearchProduct from "../SearchProduct/SearchProduct";
 
-export default function CardList(props) {
+export default function ProductList(props) {
   const [cards, setCards] = useState([]);
   const [cartItem, setCartItem] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [totalProduct, setTotalProduct] = useState(0);
   const [pageArray, setPageArray] = useState([]);
   const [value, setValue] = useState(10);
-  const totalPages = Math.ceil(totalProduct / value);
   const [searchText, setSearchText] = useState("");
+  const totalPages = Math.ceil(totalProduct / value);
 
   // Handles page change on click on page button
   const handleClick = (pageNumber) => {
@@ -45,6 +45,7 @@ export default function CardList(props) {
   // Render search item list in UI
   const searchProduct = (skip = 0) => {
     setIsLoading(true);
+    debugger;
     fetch(
       `https://dummyjson.com/products/search?q=${searchText}&value=${value}&skip=${skip}`
     )
@@ -56,6 +57,7 @@ export default function CardList(props) {
       });
   };
   useEffect(() => {
+    debugger;
     if (searchText.length > 0) {
       searchProduct();
     } else {
@@ -81,6 +83,7 @@ export default function CardList(props) {
   };
 
   const handleSearch = (e) => {
+    debugger;
     setSearchText(e.target.value);
   };
   //Handles navigation from cart screen to log-in page
@@ -93,53 +96,18 @@ export default function CardList(props) {
       <div className="cardheader">
         <button onClick={backNavigation}>Back</button>
         <h1 className="header">Desserts</h1>
-        <input
-          type="text"
-          placeholder=" Search..."
-          className="search-cart"
-          onChange={(e) => handleSearch(e)}
-        ></input>
+        <SearchProduct handleSearch={handleSearch} searchText={searchText} />
       </div>
       {isLoading ? (
         <div className="loader"></div>
       ) : (
         <div className="cart-layout">
           <div className="main-layout">
-            <div className="grid-container">
-              {cards.map((card) => {
-                const cartText = cartItem.some((item) => item.id === card.id);
-                return (
-                  <div>
-                    <Link to={`/${API_ROUTES.PRODUCT_DETAILS}/${card.id}`} className="carditem">
-                      <div key={card.id}>
-                        <div>
-                          <img
-                            src={card.thumbnail}
-                            alt="cake"
-                            style={{ height: 300, width: 250 }}
-                          />
-                        </div>
-                        <div className="card-btn">
-                          <button
-                            onClick={(e) => {
-                              e.preventDefault();
-                              handleAddToCart(card);
-                            }}
-                          >
-                            {cartText ? "Added to Cart" : "Add to Cart"}
-                          </button>
-                        </div>
-                        <div className="card-content">
-                          <p>{card.title}</p>
-                          <p>{card.description}</p>
-                          <p>{card.price}</p>
-                        </div>
-                      </div>
-                    </Link>
-                  </div>
-                );
-              })}
-            </div>
+            <ProductCards
+              cards={cards}
+              cartItem={cartItem}
+              handleAddToCart={handleAddToCart}
+            />
             <Pagination
               pageArray={pageArray}
               value={value}
