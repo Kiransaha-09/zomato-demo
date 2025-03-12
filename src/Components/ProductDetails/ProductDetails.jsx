@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import { API_ROUTES } from "../apiRoutes.constants";
+import { API_ROUTES } from "../../constants/apiRoutes.constants";
 export default function ProductDetails() {
   const params = useParams();
   const [productDeatils, setProductDetails] = useState({});

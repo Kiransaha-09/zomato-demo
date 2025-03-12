@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { API_ROUTES } from "../apiRoutes.constants";
+import { API_ROUTES } from "../../constants/apiRoutes.constants";
 import AddProduct from "../AddProduct/AddProduct";
 
 export default function ProductCards(props) {

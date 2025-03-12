@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import { API_ROUTES } from "../apiRoutes.constants";
+import { API_ROUTES } from "../../constants/apiRoutes.constants";
 
 export default function Home() {
   const [emailError, setEmailError] = useState("");

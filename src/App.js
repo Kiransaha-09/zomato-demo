@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProductList from "./Components/ProductList/ProductList";
 import Home from "./Components/HomePage/HomePage";
 import ProductDetails from "./Components/ProductDetails/ProductDetails";
-import { API_ROUTES } from "./Components/apiRoutes.constants";
+import { API_ROUTES } from "./constants/apiRoutes.constants";
 
 import "./App.css";
 
