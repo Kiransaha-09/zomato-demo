@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 export const Pagination = (props) => {
+  const [pageArray, setPageArray] = useState([]);
+  const totalPages = Math.ceil(props.totalProduct / props.value);
+
+  const getNumberOfPages = () => {
+    let pages = [];
+    for (let i = 1; i <= totalPages; i++) {
+      pages.push(i);
+    }
+    setPageArray(pages);
+  };
+  useEffect(() => {
+    getNumberOfPages();
+  }, [props.cards]);
+
   return (
     <div className="pages">
-      {props.pageArray.map((item, index) => {
+      {pageArray.map((item, index) => {
         return (
           <div key={index}>
             <button onClick={() => props.handleClick(item)}>{item}</button>

@@ -4,16 +4,15 @@ import { Pagination } from "../Pagination/Pagination";
 import { useNavigate } from "react-router-dom";
 import ProductCards from "../ProductCards/ProductCards";
 import SearchProduct from "../SearchProduct/SearchProduct";
+import Loader from "../Loader/Loader";
 
 export default function ProductList(props) {
   const [cards, setCards] = useState([]);
   const [cartItem, setCartItem] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [totalProduct, setTotalProduct] = useState(0);
-  const [pageArray, setPageArray] = useState([]);
   const [value, setValue] = useState(10);
   const [searchText, setSearchText] = useState("");
-  const totalPages = Math.ceil(totalProduct / value);
 
   // Handles page change on click on page button
   const handleClick = (pageNumber) => {
@@ -65,31 +64,18 @@ export default function ProductList(props) {
     }
   }, [searchText]);
 
-  //Handles pagination
-  const getNumberOfPages = () => {
-    let pages = [];
-    for (let i = 1; i <= totalPages; i++) {
-      pages.push(i);
-    }
-    setPageArray(pages);
-  };
-  useEffect(() => {
-    getNumberOfPages();
-  }, [cards]);
-
   // Handle pagination dropdwon change
   const handleChange = (e) => {
     setValue(e.target.value);
   };
 
   const handleSearch = (e) => {
-    debugger;
     setSearchText(e.target.value);
   };
   //Handles navigation from cart screen to log-in page
   const navigate = useNavigate();
   const backNavigation = () => {
-    navigate("/");
+    navigate(-1);
   };
   return (
     <>
@@ -99,7 +85,7 @@ export default function ProductList(props) {
         <SearchProduct handleSearch={handleSearch} searchText={searchText} />
       </div>
       {isLoading ? (
-        <div className="loader"></div>
+        <Loader />
       ) : (
         <div className="cart-layout">
           <div className="main-layout">
@@ -109,7 +95,7 @@ export default function ProductList(props) {
               handleAddToCart={handleAddToCart}
             />
             <Pagination
-              pageArray={pageArray}
+              totalProduct={totalProduct}
               value={value}
               handleChange={handleChange}
               handleClick={handleClick}

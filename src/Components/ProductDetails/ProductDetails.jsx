@@ -21,7 +21,7 @@ export default function ProductDetails() {
   };
   const navigate = useNavigate();
   const backButton = () => {
-    navigate(`/${API_ROUTES.PRODUCTS}`);
+    navigate(-1);
   };
   return (
     // Render card details in UI 
