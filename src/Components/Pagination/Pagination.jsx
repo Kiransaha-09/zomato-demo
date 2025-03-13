@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 export const Pagination = (props) => {
   const [pageArray, setPageArray] = useState([]);
-  const totalPages = Math.ceil(props.totalProduct / props.value);
+  const totalPages = Math.ceil(props.totalItems / props.itemsPerPage);
 
   const getNumberOfPages = () => {
     let pages = [];
@@ -13,22 +13,22 @@ export const Pagination = (props) => {
   };
   useEffect(() => {
     getNumberOfPages();
-  }, [props.cards]);
+  }, [props.totalItems]);
 
   return (
     <div className="pages">
       {pageArray.map((item, index) => {
         return (
           <div key={index}>
-            <button onClick={() => props.handleClick(item)}>{item}</button>
+            <button onClick={() => props.onPageChange(item)}>{item}</button>
           </div>
         );
       })}
       <div>
-        {props.cards.length > 0 && (
+        {pageArray.length > 0 && (
           <select
-            value={props.value}
-            onChange={(event) => props.handleChange(event)}
+            value={props.itemsPerPage}
+            onChange={(event) => props.onItemsPerPageChange(event)}
           >
             <option value="10">10</option>
             <option value="20">20</option>

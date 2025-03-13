@@ -1,6 +1,8 @@
 import { useNavigate, useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import BackNavigation from "../BackNavigation/BackNavigation";
 import { API_ROUTES } from "../../constants/apiRoutes.constants";
+
 export default function ProductDetails() {
   const params = useParams();
   const [productDeatils, setProductDetails] = useState({});
@@ -19,16 +21,10 @@ export default function ProductDetails() {
   const handleReturnPolicy = () => {
     setShowReturnPolicy(true);
   };
-  const navigate = useNavigate();
-  const backButton = () => {
-    navigate(-1);
-  };
   return (
     // Render card details in UI 
     <>
-      <button className="back-button" onClick={backButton}>
-        Back
-      </button>
+      <BackNavigation/>
       <div className="Product-details">
         <div>
           <img src={productDeatils.thumbnail} alt="image"></img>
