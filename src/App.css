@@ -133,7 +133,13 @@
   text-decoration: none;
   color: black;
 }
-.Img{
+.Img {
   height: 300px;
   width: 250px;
+}
+.cardpage {
+  margin-bottom: 10px;
+  border: 1px solid black;
+  border-radius: 40px;
+  cursor: pointer;
 }
