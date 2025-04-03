@@ -11,7 +11,6 @@ import BackNavigation from "../BackNavigation/BackNavigation";
 
 export default function ProductList(props) {
   const [products, setProducts] = useState([]);
-  const [cartItems, setCartItem] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [totalItems, setTotalItems] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -26,7 +25,7 @@ export default function ProductList(props) {
 
   // Handles items added to cart
   const handleAddToCart = (item) => {
-    setCartItem((prev) => [...prev, item]);
+    props.setCartItem((prev) => [...prev, item]);
   };
 
   //Render item list in the UI
@@ -87,7 +86,7 @@ export default function ProductList(props) {
           <div className="main-layout">
             <ProductCards
               products={products}
-              cartItems={cartItems}
+              cartItems={props.cartItems}
               handleAddToCart={handleAddToCart}
             />
             <Pagination
@@ -97,7 +96,7 @@ export default function ProductList(props) {
               onPageChange={handlePageChange}
             />
           </div>
-          <CartWidjet cartItems={cartItems} setCartItem={setCartItem} />
+          <CartWidjet cartItems={props.cartItems} setCartItem={props.setCartItem} handleDelete={props.handleDelete}/>
         </div>
       )}
     </>
