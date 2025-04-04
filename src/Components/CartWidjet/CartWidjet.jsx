@@ -1,8 +1,4 @@
 export default function CartWidjet(props) {
-  // Handle delete item from cart
-  // const handleDelete = (index) => {
-  //   props.setCartItem((a)=>a.filter((i) => i !== index))
-  // };
   return (
     <div className="cart">
       <h1>Your cart ({props.cartItems.length}) </h1>
