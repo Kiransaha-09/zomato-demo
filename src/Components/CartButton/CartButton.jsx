@@ -1,18 +1,13 @@
-import React from "react";
+import React,{useContext} from "react";
+import { ProductContext } from "../../Context/ProductContext";
+import CartWidjet from "../CartWidjet/CartWidjet";
 
 export default function CartButton() {
   const {
-    products,
     cartItems,
-    setCartItem,
-    isLoading,
-    totalItems,
-    setItemsPerPage,
-    itemsPerPage,
-    searchText,
-    setSearchText,
-    searchProduct,
-    fetchCards,
+    setCartItem 
   } = useContext(ProductContext);
-  return <h1>Hello cart</h1>;
+  return(
+     <CartWidjet cartItems={cartItems} setCartItem={setCartItem} />
+  )
 }
