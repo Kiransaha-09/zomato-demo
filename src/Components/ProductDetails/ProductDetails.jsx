@@ -1,7 +1,6 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import BackNavigation from "../BackNavigation/BackNavigation";
-import { API_ROUTES } from "../../constants/apiRoutes.constants";
 
 export default function ProductDetails() {
   const params = useParams();

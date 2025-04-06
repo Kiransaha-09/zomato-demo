@@ -3,29 +3,51 @@ import React, { useState, useEffect } from "react";
 import { API_ROUTES } from "../../constants/apiRoutes.constants";
 
 export default function Home() {
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [emailValue, setEmailValue] = useState("");
-  const [passwordValue, setPasswordValue] = useState("");
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+  });
+  const [showPassword, setshowPassword] = useState(false);
+  const handleShowPassword = () => {
+    setshowPassword(!showPassword);
+  };
+  const handleFormValidation = () => {
+    const formErrors = {
+      email: "",
+      password: "",
+    };
+    if (values.email === "") {
+      formErrors.email = "Email is Required";
+    }
+    if (values.password === "") {
+      formErrors.password = "Password is Required";
+    }
+    setErrors(formErrors);
+    return formErrors.email && formErrors.password;
+  };
+
   const navigate = useNavigate();
   const handleGoToCart = () => {
-    if (emailValue === "") {
-      setEmailError("Email is Required");
-    }
-    if (passwordValue === "") {
-      setPasswordError("Password is Required");
-    }
-    if (emailValue !== "" && passwordValue !== "") {
+    if (values.email !== "" && values.password !== "") {
       navigate(API_ROUTES.PRODUCTS);
     }
+    if (!handleFormValidation()) {
+      return;
+    }
   };
-  const handleEmailChange = (e) => {
-    setEmailValue(e.target.value);
-    setEmailError("");
-  };
-  const handlePasswordChange = (e) => {
-    setPasswordValue(e.target.value);
-    setPasswordError("");
+  const handleChange = (e) => {
+    const updatingState = {
+      ...values,
+      [e.target.name]: e.target.value,
+    };
+    setValues(updatingState);
+    if (updatingState.email !== "") errors.email = "";
+    if (updatingState.password !== "") errors.password = "";
   };
   return (
     <>
@@ -39,25 +61,34 @@ export default function Home() {
             id="email"
             name="email"
             placeholder="Enter Your Email"
-            value={emailValue}
+            value={values.email}
             onChange={(e) => {
-              handleEmailChange(e);
+              handleChange(e);
             }}
           />
-          <span>{emailError}</span>
+          <span>{errors.email}</span>
         </div>
         <div className="inputfield">
           <input
-            type="password"
+            type={!showPassword ? "password" : "text"}
             id="password"
             name="password"
             placeholder="Provide Password"
-            value={passwordValue}
+            value={values.password}
             onChange={(e) => {
-              handlePasswordChange(e);
+              handleChange(e);
             }}
           />
-          <span>{passwordError}</span>
+          <button
+            onClick={() => {
+              handleShowPassword();
+            }}
+            disabled={values.password.length === 0}
+          >
+            {showPassword ? "Hide" : "Show"}
+          </button>
+
+          <span>{errors.password}</span>
         </div>
         <div className="handlelogin">
           <button onClick={handleGoToCart}>Log-in</button>
