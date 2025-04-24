@@ -1,49 +1,46 @@
 import { useNavigate, useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import BackNavigation from "../BackNavigation/BackNavigation";
-import { API_ROUTES } from "../../constants/apiRoutes.constants";
+import { getProductById } from "../redux/features/productDetails.slice";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function ProductDetails() {
   const params = useParams();
-  const [productDeatils, setProductDetails] = useState({});
   const [showReturnPolicy, setShowReturnPolicy] = useState(false);
-  const getProductById = () => {
-    fetch(`https://dummyjson.com/products/${params.id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setProductDetails(data);
-      });
-  };
+
+  const dispatch = useDispatch();
+  const product = useSelector((state) => state.product.product);
+
   useEffect(() => {
-    getProductById();
-  }, [params.id]);
+    dispatch(getProductById(params.id));
+  }, [params.id, dispatch]);
 
   const handleReturnPolicy = () => {
     setShowReturnPolicy(true);
   };
   return (
-    // Render card details in UI 
+    // Render card details in UI
     <>
-      <BackNavigation/>
+      <BackNavigation />
       <div className="Product-details">
         <div>
-          <img src={productDeatils.thumbnail} alt="image"></img>
-          <div class="additional-details">
+          <img src={product.thumbnail} alt="image"></img>
+          <div className="additional-details">
             <p>Additional Details: </p>
             <button
               onClick={() => {
                 handleReturnPolicy();
               }}
             >
-              {showReturnPolicy ? productDeatils.returnPolicy : "ReturnPolicy"}
+              {showReturnPolicy ? product.returnPolicy : "ReturnPolicy"}
             </button>
           </div>
         </div>
         <div className="Each-Product">
-          <h1>{productDeatils.title}</h1>
-          <h2>{productDeatils.brand}</h2>
-          <p>${productDeatils.price}</p>
-          <p>Review:{productDeatils.rating}</p>
+          <h1>{product.title}</h1>
+          <h2>{product.brand}</h2>
+          <p>${product.price}</p>
+          <p>Review:{product.rating}</p>
         </div>
       </div>
     </>

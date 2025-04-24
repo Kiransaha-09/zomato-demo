@@ -8,7 +8,7 @@ export default function ProductCards(props) {
       {props.products.map((card) => {
         const cartText = props.cartItems.some((item) => item.id === card.id);
         return (
-          <div>
+          <div key={card.id}>
             <ProductCardItem
               card={card}
               cartText={cartText}
