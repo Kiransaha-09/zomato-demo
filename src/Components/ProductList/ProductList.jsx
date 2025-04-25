@@ -8,6 +8,8 @@ import SearchProduct from "../SearchProduct/SearchProduct";
 import Loader from "../Loader/Loader";
 import CartWidjet from "../CartWidjet/CartWidjet";
 import BackNavigation from "../BackNavigation/BackNavigation";
+import { useSelector, useDispatch } from "react-redux";
+import { getProductsList } from "../redux/features/productDetails.slice";
 
 export default function ProductList(props) {
   const [products, setProducts] = useState([]);
@@ -16,11 +18,13 @@ export default function ProductList(props) {
   const [totalItems, setTotalItems] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [searchText, setSearchText] = useState("");
+  const [pageNumber, setPageNumber] = useState(0);
 
   // Handles page change on click on page button
-  const handlePageChange = (pageNumber) => {
+  const handlePageChange = (pageNumbers) => {
     const skip = (pageNumber - 1) * itemsPerPage;
-    fetchCards(skip);
+    // fetchCards(skip);
+    setPageNumber(pageNumbers);
     searchProduct(skip);
   };
 
@@ -30,19 +34,13 @@ export default function ProductList(props) {
   };
 
   //Render item list in the UI
-  const fetchCards = (skip = 0) => {
-    setIsLoading(true);
-    fetch(`https://dummyjson.com/products?limit=${itemsPerPage}&skip=${skip}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setProducts(data?.products);
-        setIsLoading(false);
-        setTotalItems(data?.total);
-      });
-  };
+  const dispatch = useDispatch();
+  const productList = useSelector((state) => state.product.product);
+  console.log("productlist", productList);
+
   useEffect(() => {
-    fetchCards();
-  }, [itemsPerPage]);
+    dispatch(getProductsList(itemsPerPage, 0));
+  }, [dispatch]);
 
   // Render search item list in UI
   const searchProduct = (skip = 0) => {
@@ -60,8 +58,6 @@ export default function ProductList(props) {
   useEffect(() => {
     if (searchText.length > 0) {
       searchProduct();
-    } else {
-      fetchCards();
     }
   }, [searchText]);
 
@@ -76,7 +72,7 @@ export default function ProductList(props) {
   return (
     <>
       <div className="cardheader">
-        <BackNavigation/>
+        <BackNavigation />
         <h1 className="header">Desserts</h1>
         <SearchProduct handleSearch={handleSearch} searchText={searchText} />
       </div>
@@ -87,6 +83,7 @@ export default function ProductList(props) {
           <div className="main-layout">
             <ProductCards
               products={products}
+              productList={productList}
               cartItems={cartItems}
               handleAddToCart={handleAddToCart}
             />

@@ -3,9 +3,11 @@ import React from "react";
 import ProductCardItem from "../ProductCardItem/ProductCardItem";
 
 export default function ProductCards(props) {
+  const productList = Array.isArray(props.productList) ? props.productList : [];
+  console.log("products", productList);
   return (
     <div className="grid-container">
-      {props.products.map((card) => {
+      {productList.map((card) => {
         const cartText = props.cartItems.some((item) => item.id === card.id);
         return (
           <div key={card.id}>
