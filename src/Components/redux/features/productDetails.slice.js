@@ -11,9 +11,10 @@ const initialState = {
     thumbnail: "",
   },
   isLoading: false,
-  totalItems:0,
+  totalItems: 0,
 };
 
+// Used each product info
 export const getProductById = createAsyncThunk(
   "product/getProductById",
   async (id) => {
@@ -21,10 +22,11 @@ export const getProductById = createAsyncThunk(
   }
 );
 
+//Used for product list info
 export const getProductsList = createAsyncThunk(
   "product/getProductsList",
-  async (itemsPerPage) => {
-    return await getCards(itemsPerPage, 0);
+  async ({itemsPerPage, skip}) => {
+    return await getCards(itemsPerPage, skip);
   }
 );
 
@@ -32,15 +34,17 @@ const productSlice = createSlice({
   name: "product",
   initialState,
   extraReducers: (builder) => {
+    // when each product is render in UI
     builder.addCase(getProductById.fulfilled, (state, action) => {
       state.product = action.payload;
     });
+    // when product list is render in UI
     builder.addCase(getProductsList.fulfilled, (state, action) => {
-      console.log("getProductsList.fulfilled : ", action.payload)
       state.product = action.payload.products;
       state.totalItems = action.payload.total;
       state.isLoading = false;
     });
+    // When page initially load
     builder.addCase(getProductsList.pending, (state) => {
       state.isLoading = true;
     });

@@ -4,7 +4,6 @@ export const Pagination = (props) => {
   const [pageArray, setPageArray] = useState([]);
   
   const totalPages = Math.ceil(props.totalItems / props.itemsPerPage);
-  // {console.log("first",props.totalItems)}
 
   const getNumberOfPages = () => {
     let pages = [];
