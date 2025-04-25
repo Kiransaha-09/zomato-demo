@@ -4,7 +4,6 @@ import ProductCardItem from "../ProductCardItem/ProductCardItem";
 
 export default function ProductCards(props) {
   const productList = Array.isArray(props.productList) ? props.productList : [];
-  console.log("products", productList);
   return (
     <div className="grid-container">
       {productList.map((card) => {
@@ -15,6 +14,7 @@ export default function ProductCards(props) {
               card={card}
               cartText={cartText}
               handleAddToCart={props.handleAddToCart}
+              
             />
           </div>
         );

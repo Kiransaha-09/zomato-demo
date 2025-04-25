@@ -22,8 +22,8 @@ export const getProductById = createAsyncThunk(
 
 export const getProductsList = createAsyncThunk(
   "product/getProductsList",
-  async (itemsPerPage,skip) => {
-    return await getCards(itemsPerPage,0);
+  async (itemsPerPage) => {
+    return await getCards(itemsPerPage, 0);
   }
 );
 
@@ -36,7 +36,6 @@ const productSlice = createSlice({
     });
     builder.addCase(getProductsList.fulfilled, (state, action) => {
       state.product = action.payload.products;
-      console.log("acton",action.payload);
       state.isLoading = false;
     });
     builder.addCase(getProductsList.pending, (state) => {

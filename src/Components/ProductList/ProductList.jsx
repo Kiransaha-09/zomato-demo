@@ -18,13 +18,10 @@ export default function ProductList(props) {
   const [totalItems, setTotalItems] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [searchText, setSearchText] = useState("");
-  const [pageNumber, setPageNumber] = useState(0);
 
   // Handles page change on click on page button
-  const handlePageChange = (pageNumbers) => {
+  const handlePageChange = (pageNumber) => {
     const skip = (pageNumber - 1) * itemsPerPage;
-    // fetchCards(skip);
-    setPageNumber(pageNumbers);
     searchProduct(skip);
   };
 
@@ -36,11 +33,10 @@ export default function ProductList(props) {
   //Render item list in the UI
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.product.product);
-  console.log("productlist", productList);
 
   useEffect(() => {
     dispatch(getProductsList(itemsPerPage, 0));
-  }, [dispatch]);
+  }, [dispatch,totalItems]);
 
   // Render search item list in UI
   const searchProduct = (skip = 0) => {
@@ -52,9 +48,11 @@ export default function ProductList(props) {
       .then((data) => {
         setProducts(data?.products);
         setIsLoading(false);
+        console.log("data",data)
         setTotalItems(data?.total);
       });
   };
+  {console.log("total",totalItems)}
   useEffect(() => {
     if (searchText.length > 0) {
       searchProduct();

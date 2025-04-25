@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 
 export const Pagination = (props) => {
   const [pageArray, setPageArray] = useState([]);
+  
   const totalPages = Math.ceil(props.totalItems / props.itemsPerPage);
+  // {console.log("first",props.totalItems)}
 
   const getNumberOfPages = () => {
     let pages = [];
@@ -13,7 +15,7 @@ export const Pagination = (props) => {
   };
   useEffect(() => {
     getNumberOfPages();
-  }, [props.totalItems]);
+  }, [props.totalItems,]);
 
   return (
     <div className="pages">
