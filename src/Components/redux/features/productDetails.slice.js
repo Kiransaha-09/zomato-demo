@@ -11,6 +11,7 @@ const initialState = {
     thumbnail: "",
   },
   isLoading: false,
+  totalItems:0,
 };
 
 export const getProductById = createAsyncThunk(
@@ -35,7 +36,9 @@ const productSlice = createSlice({
       state.product = action.payload;
     });
     builder.addCase(getProductsList.fulfilled, (state, action) => {
+      console.log("getProductsList.fulfilled : ", action.payload)
       state.product = action.payload.products;
+      state.totalItems = action.payload.total;
       state.isLoading = false;
     });
     builder.addCase(getProductsList.pending, (state) => {

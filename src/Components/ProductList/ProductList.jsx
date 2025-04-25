@@ -15,7 +15,6 @@ export default function ProductList(props) {
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItem] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [totalItems, setTotalItems] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [searchText, setSearchText] = useState("");
 
@@ -23,6 +22,7 @@ export default function ProductList(props) {
   const handlePageChange = (pageNumber) => {
     const skip = (pageNumber - 1) * itemsPerPage;
     searchProduct(skip);
+    dispatch(getProductsList(itemsPerPage, skip))
   };
 
   // Handles items added to cart
@@ -33,10 +33,11 @@ export default function ProductList(props) {
   //Render item list in the UI
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.product.product);
+  let totalItems = useSelector((state) => state.product.totalItems);
 
   useEffect(() => {
     dispatch(getProductsList(itemsPerPage, 0));
-  }, [dispatch,totalItems]);
+  }, [dispatch]);
 
   // Render search item list in UI
   const searchProduct = (skip = 0) => {
@@ -48,11 +49,9 @@ export default function ProductList(props) {
       .then((data) => {
         setProducts(data?.products);
         setIsLoading(false);
-        console.log("data",data)
-        setTotalItems(data?.total);
+        // setTotalItems(data?.total);
       });
   };
-  {console.log("total",totalItems)}
   useEffect(() => {
     if (searchText.length > 0) {
       searchProduct();
@@ -80,10 +79,10 @@ export default function ProductList(props) {
         <div className="cart-layout">
           <div className="main-layout">
             <ProductCards
-              products={products}
               productList={productList}
               cartItems={cartItems}
               handleAddToCart={handleAddToCart}
+              totalItems={totalItems}
             />
             <Pagination
               totalItems={totalItems}
