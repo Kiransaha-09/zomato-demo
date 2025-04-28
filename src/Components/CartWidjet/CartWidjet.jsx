@@ -1,9 +1,5 @@
 export default function CartWidjet(props) {
-  // Handle delete item from cart
-  const handleDetele = (index) => {
-    props.setCartItem((a)=>a.filter((item,i) => i !== index))
-     
-  };
+
   return (
     <div className="cart">
       <h1>Your cart ({props.cartItems.length}) </h1>
@@ -22,7 +18,9 @@ export default function CartWidjet(props) {
           <p>{index + 1}.</p>
           <p>{card.title}</p>
           <p>= {card.price}</p>
-          <button onClick={() => handleDetele(index)}>🗑️ Detele</button>
+          <button onClick={() => props.handleDeteleFromCart(card.id)}>
+            🗑️ Detele
+          </button>
         </div>
       ))}
     </div>

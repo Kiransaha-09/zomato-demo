@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
 
 import { Pagination } from "../Pagination/Pagination";
-// import { useNavigate } from "react-router-dom";
 
 import ProductCards from "../ProductCards/ProductCards";
 import SearchProduct from "../SearchProduct/SearchProduct";
 import Loader from "../Loader/Loader";
 import CartWidjet from "../CartWidjet/CartWidjet";
 import BackNavigation from "../BackNavigation/BackNavigation";
+import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import { useSelector, useDispatch } from "react-redux";
-import { getProductsList } from "../redux/features/productDetails.slice";
+import { getProductsList } from "../../redux/features/productDetails.slice";
+import {
+  addItemToCart,
+  removeItemFromCart,
+} from "../../redux/features/cart.slice";
 
-export default function ProductList(props) {
-  // const [products, setProducts] = useState([]);
-  const [cartItems, setCartItem] = useState([]);
+export default function ProductList() {
   const [isLoading, setIsLoading] = useState(false);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [searchText, setSearchText] = useState("");
@@ -25,12 +27,13 @@ export default function ProductList(props) {
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.product.product);
   const totalItems = useSelector((state) => state.product.totalItems);
+  const cartItems = useSelector((state) => state.cart.addProduct);
 
   // Handles page change on click on page button
   const handlePageChange = (pageNumber) => {
     const skip = (pageNumber - 1) * itemsPerPage;
     setCurrentSkip(skip);
-    debugger;
+
     if (searchText.length > 0) {
       searchProduct(skip);
     } else {
@@ -40,7 +43,12 @@ export default function ProductList(props) {
 
   // Handles items added to cart
   const handleAddToCart = (item) => {
-    setCartItem((prev) => [...prev, item]);
+    dispatch(addItemToCart(item));
+  };
+
+  // Handle delete item from cart
+  const handleDeteleFromCart = (itemId) => {
+    dispatch(removeItemFromCart(itemId));
   };
 
   useEffect(() => {
@@ -58,7 +66,6 @@ export default function ProductList(props) {
     )
       .then((response) => response.json())
       .then((data) => {
-        debugger;
         setSearchResult(data?.products);
         setIsLoading(false);
         settotalSearchItem(data?.total);
@@ -83,12 +90,12 @@ export default function ProductList(props) {
       searchProduct(0);
     }
   };
-  console.log("first", totalSearchItem);
   return (
     <>
       <div className="cardheader">
         <BackNavigation />
         <h1 className="header">Desserts</h1>
+        <ShoppingCart  cartItems={cartItems}/>
         <SearchProduct handleSearch={handleSearch} searchText={searchText} />
       </div>
       {isLoading ? (
@@ -109,10 +116,12 @@ export default function ProductList(props) {
               onPageChange={handlePageChange}
             />
           </div>
-          <CartWidjet cartItems={cartItems} setCartItem={setCartItem} />
+          <CartWidjet
+            cartItems={cartItems}
+            handleDeteleFromCart={handleDeteleFromCart}
+          />
         </div>
       )}
     </>
   );
 }
-

@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchProductById } from "../../../services/productDetailsApi";
-import { getCards } from "../../../services/productListApi";
+import { fetchProductById } from "../../services/productDetailsApi";
+import { getCards } from "../../services/productListApi";
 
 const initialState = {
   product: {
@@ -9,11 +9,11 @@ const initialState = {
     price: "",
     rating: "",
     thumbnail: "",
+    reviews:[],
   },
   isLoading: false,
   totalItems: 0,
 };
-
 // Used each product info
 export const getProductById = createAsyncThunk(
   "product/getProductById",
@@ -25,7 +25,7 @@ export const getProductById = createAsyncThunk(
 //Used for product list info
 export const getProductsList = createAsyncThunk(
   "product/getProductsList",
-  async ({itemsPerPage, skip}) => {
+  async ({ itemsPerPage, skip }) => {
     return await getCards(itemsPerPage, skip);
   }
 );
