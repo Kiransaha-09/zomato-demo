@@ -108,6 +108,7 @@ export default function ProductList() {
               cartItems={cartItems}
               handleAddToCart={handleAddToCart}
               totalItems={searchText.length > 0 ? totalSearchItem : totalItems}
+              handleDeteleFromCart={handleDeteleFromCart}
             />
             <Pagination
               totalItems={searchText.length > 0 ? totalSearchItem : totalItems}

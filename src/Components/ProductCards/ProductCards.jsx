@@ -8,14 +8,16 @@ export default function ProductCards(props) {
   const productList = Array.isArray(props.productList) ? props.productList : [];
   return (
     <div className="grid-container">
-      {productList.map((card) => {
-        const cartText = props.cartItems.some((item) => item.id === card.id);
+      {productList.map((product) => {
+        const cartText = props.cartItems.some((item) => item.id === product.id);
         return (
-          <div key={card.id}>
+          <div key={product.id}>
             <ProductCardItem
-              card={card}
+              product={product}
               cartText={cartText}
               handleAddToCart={props.handleAddToCart}
+              handleDeteleFromCart={props.handleDeteleFromCart}
+              cartItems={props.cartItems}
             />
           </div>
         );

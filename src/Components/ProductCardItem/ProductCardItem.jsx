@@ -8,24 +8,28 @@ const ProductCardItem = (props) => {
   return (
     <div>
       <Link
-        to={`/${API_ROUTES.PRODUCT_DETAILS}/${props.card.id}`}
+        to={`/${API_ROUTES.PRODUCT_DETAILS}/${props.product.id}`}
         className="carditem"
       >
-        <div key={props.card.id}>
+        <div key={props.product.id}>
           <div>
-            <img src={props.card.thumbnail} alt="cake" className="Img" />
+            <img src={props.product.thumbnail} alt="cake" className="Img" />
           </div>
-          <div className="card-btn">
+          <div className="product-btn">
+            <div className="card-btn">
             <AddProduct
               cartText={props.cartText}
               handleAddToCart={props.handleAddToCart}
-              card={props.card}
+              handleDeteleFromCart={props.handleDeteleFromCart}
+              product={props.product}
+              cartItems={props.cartItems}
             />
+            </div>
           </div>
-          <div className="card-content">
-            <p>{props.card.title}</p>
-            <p>{props.card.description}</p>
-            <p>{props.card.price}</p>
+          <div className="product-content">
+            <p>{props.product.title}</p>
+            <p>{props.product.description}</p>
+            <p>${props.product.price}</p>
           </div>
         </div>
       </Link>
