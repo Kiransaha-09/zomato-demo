@@ -97,10 +97,12 @@
   display: grid;
   justify-content: center;
   gap: 5px;
+  padding-left: 80px;
 }
 .handlelogin {
   display: flex;
   justify-content: center;
+  padding-right: 70px;
   button {
     cursor: pointer;
   }
