@@ -3,31 +3,28 @@ import React, { useState, useEffect } from "react";
 import { Pagination } from "../Pagination/Pagination";
 
 import ProductCards from "../ProductCards/ProductCards";
-import SearchProduct from "../SearchProduct/SearchProduct";
 import Loader from "../Loader/Loader";
-import CartWidjet from "../CartWidjet/CartWidjet";
-import BackNavigation from "../BackNavigation/BackNavigation";
-import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import { useSelector, useDispatch } from "react-redux";
 import { getProductsList } from "../../redux/features/productDetails.slice";
 import {
   addItemToCart,
   removeItemFromCart,
 } from "../../redux/features/cart.slice";
+import { fetchSearchProduct } from "../../services/productSearchaApi";
 
 export default function ProductList() {
-  const [isLoading, setIsLoading] = useState(false);
   const [itemsPerPage, setItemsPerPage] = useState(10);
-  const [searchText, setSearchText] = useState("");
   const [currentSkip, setCurrentSkip] = useState(0);
-  const [totalSearchItem, settotalSearchItem] = useState(0);
-  const [searchResult, setSearchResult] = useState([]);
 
   //Render item list in the UI using Redux
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.product.product);
   const totalItems = useSelector((state) => state.product.totalItems);
   const cartItems = useSelector((state) => state.cart.addProduct);
+  const { searchResults, isLoading, totalSearchItems } = useSelector(
+    (state) => state.search
+  );
+  const searchText = useSelector((state) => state.search.searchText);
 
   // Handles page change on click on page button
   const handlePageChange = (pageNumber) => {
@@ -35,7 +32,7 @@ export default function ProductList() {
     setCurrentSkip(skip);
 
     if (searchText.length > 0) {
-      searchProduct(skip);
+      dispatch(fetchSearchProduct({ searchText, itemsPerPage, skip }));
     } else {
       dispatch(getProductsList({ itemsPerPage, skip }));
     }
@@ -58,69 +55,53 @@ export default function ProductList() {
     }
   }, [currentSkip, itemsPerPage, searchText, dispatch]);
 
-  // Render search item list in UI
-  const searchProduct = (skip = 0) => {
-    setIsLoading(true);
-    fetch(
-      `https://dummyjson.com/products/search?q=${searchText}&value=${itemsPerPage}&skip=${skip}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setSearchResult(data?.products);
-        setIsLoading(false);
-        settotalSearchItem(data?.total);
-      });
-  };
-
   // Handle pagination dropdwon change
   const handleItemsPerPageChange = (e) => {
+    const newItemsPerPage = e.target.value;
+    setItemsPerPage(newItemsPerPage);
     setCurrentSkip(0);
-    setItemsPerPage(e.target.value);
     if (searchText.length > 0) {
-      searchProduct(0);
+      dispatch(
+        fetchSearchProduct({
+          searchText,
+          itemsPerPage: newItemsPerPage,
+          skip: 0,
+        })
+      );
     } else {
-      dispatch(getProductsList(e.target.value, 0));
+      dispatch(getProductsList({ itemsPerPage: newItemsPerPage, skip: 0 }));
     }
   };
 
-  // Handle product search in productlist page
-  const handleSearch = (e) => {
-    setSearchText(e.target.value);
-    if (e.target.value.length > 0) {
-      searchProduct(0);
+  // Effect hook to fetch products initially or based on search
+  useEffect(() => {
+    if (searchText.length === 0) {
+      dispatch(getProductsList({ itemsPerPage, skip: currentSkip }));
     }
-  };
+  }, [dispatch, searchText, itemsPerPage, currentSkip]);
+
   return (
     <>
-      <div className="cardheader">
-        <BackNavigation />
-        <h1 className="header">Desserts</h1>
-        <ShoppingCart  cartItems={cartItems}/>
-        <SearchProduct handleSearch={handleSearch} searchText={searchText} />
-      </div>
       {isLoading ? (
         <Loader />
       ) : (
         <div className="cart-layout">
           <div className="main-layout">
             <ProductCards
-              productList={searchText.length > 0 ? searchResult : productList}
+              productList={searchText.length > 0 ? searchResults : productList}
               cartItems={cartItems}
               handleAddToCart={handleAddToCart}
-              totalItems={searchText.length > 0 ? totalSearchItem : totalItems}
+              totalItems={searchText.length > 0 ? totalSearchItems : totalItems}
               handleDeteleFromCart={handleDeteleFromCart}
             />
             <Pagination
-              totalItems={searchText.length > 0 ? totalSearchItem : totalItems}
+              totalItems={searchText.length > 0 ? totalSearchItems : totalItems}
               itemsPerPage={itemsPerPage}
               onItemsPerPageChange={handleItemsPerPageChange}
               onPageChange={handlePageChange}
+              searchText={searchText}
             />
           </div>
-          <CartWidjet
-            cartItems={cartItems}
-            handleDeteleFromCart={handleDeteleFromCart}
-          />
         </div>
       )}
     </>

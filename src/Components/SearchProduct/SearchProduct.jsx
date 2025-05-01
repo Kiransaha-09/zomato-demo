@@ -1,4 +1,5 @@
 export default function SearchProduct(props) {
+
   return (
     <div>
       <input
@@ -6,7 +7,7 @@ export default function SearchProduct(props) {
         placeholder="Search..."
         className="search-cart"
         value={props.searchText}
-        onChange={(e) => props.handleSearch(e)}
+        onChange={(e) =>props.handleSearch(e)}
       />
     </div>
   );

@@ -9,7 +9,7 @@ const initialState = {
     price: "",
     rating: "",
     thumbnail: "",
-    reviews:[],
+    reviews: [],
   },
   isLoading: false,
   totalItems: 0,

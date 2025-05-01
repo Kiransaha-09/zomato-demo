@@ -2,7 +2,7 @@ import React from "react";
 import CartWidjet from "../CartWidjet/CartWidjet";
 import { useSelector, useDispatch } from "react-redux";
 import { removeItemFromCart } from "../../redux/features/cart.slice";
-import BackNavigation from "../BackNavigation/BackNavigation";
+
 
 export default function CartPage() {
   const dispatch = useDispatch();
@@ -12,7 +12,6 @@ export default function CartPage() {
   };
   return (
     <>
-      <BackNavigation />
       <CartWidjet
         cartItems={cartItems}
         handleDeteleFromCart={handleDeteleFromCart}

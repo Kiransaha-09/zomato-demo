@@ -1,12 +1,11 @@
 import { useParams } from "react-router-dom";
 import React, { useEffect } from "react";
-import BackNavigation from "../BackNavigation/BackNavigation";
 import { getProductById } from "../../redux/features/productDetails.slice";
 import { useDispatch, useSelector } from "react-redux";
 import StarRating from "../StarRating/StarRating";
 import ProductReviews from "../ProductReviews/ProductReviews";
 
-export default function ProductDetails() {
+export default function ProductDetails(props) {
   const params = useParams();
 
   const dispatch = useDispatch();
@@ -19,7 +18,6 @@ export default function ProductDetails() {
   return (
     // Render card details in UI
     <>
-      <BackNavigation />
       <div className="Product-details">
         <div>
           <img src={product.thumbnail} alt="image"></img>

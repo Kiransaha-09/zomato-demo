@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 
 export const Pagination = (props) => {
   const [pageArray, setPageArray] = useState([]);
-  
-  const totalPages = Math.ceil(props.totalItems / props.itemsPerPage);
+
+  const totalPages = Math.ceil(
+    (props.searchText.length > 0 ? props.totalSearchItems : props.totalItems) /
+      props.itemsPerPage
+  );
 
   const getNumberOfPages = () => {
     let pages = [];
@@ -14,7 +17,12 @@ export const Pagination = (props) => {
   };
   useEffect(() => {
     getNumberOfPages();
-  }, [props.totalItems,]);
+  }, [
+    props.totalItems,
+    props.totalSearchItems,
+    props.itemsPerPage,
+    props.searchText,
+  ]);
 
   return (
     <div className="pages">

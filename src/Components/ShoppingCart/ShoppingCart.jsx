@@ -8,7 +8,7 @@ function ShoppingCart(props) {
       <button className="new-cardpage" onClick={() => navigate("/carts")}>
         🛒
       </button>
-      <span class="badge">{props.cartItems.length}</span>
+      <span class="badge">{props.cartItems}</span>
     </div>
   );
 }
