@@ -1,8 +1,10 @@
-export default function CartWidjet(props) {
+import "./CartWidjet.css";
+import VehicleImg from "../../Assets/Vector.svg";
 
+export default function CartWidjet(props) {
   return (
     <div className="cart">
-      <h1>Your cart ({props.cartItems.length}) </h1>
+      <h1>Your cart </h1>
       {props.cartItems.length === 0 && (
         <>
           <img
@@ -15,14 +17,26 @@ export default function CartWidjet(props) {
       )}
       {props.cartItems.map((card, index) => (
         <div key={index} className="cart-details">
-          <p>{index + 1}.</p>
-          <p>{card.title}</p>
-          <p>= {card.price}</p>
+          <div className="cart-content">
+            <img src={card.thumbnail} alt="image" />
+            <div className="product-info">
+              <p>{card.title}</p>
+              <p>Rs {card.price}</p>
+            </div>
+          </div>
           <button onClick={() => props.handleDeteleFromCart(card.id)}>
-            🗑️ Detele
+            Remove
           </button>
         </div>
       ))}
+      {props.cartItems.length > 0 && (
+        <div className="delivery-info">
+          <img src={VehicleImg} alt="car" />
+          <p>
+            Estimated delivery by <span>May 25</span>
+          </p>
+        </div>
+      )}
     </div>
   );
 }

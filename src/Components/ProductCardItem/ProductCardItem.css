@@ -1,0 +1,31 @@
+.card-container {
+  border-radius: 18px;
+  border-width: 1px;
+  border: 1px solid black;
+}
+.product-image {
+  background: rgba(247, 245, 247, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+}
+.product-context {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.product-content {
+  padding: 10px;
+}
+.product-btn {
+  margin-top: 20px;
+}
+.product-price{
+  font-weight: bold;
+}
+.product-name{
+  color:rgb(94, 92, 92);
+}

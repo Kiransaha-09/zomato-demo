@@ -2,7 +2,10 @@ import React from "react";
 import CartWidjet from "../CartWidjet/CartWidjet";
 import { useSelector, useDispatch } from "react-redux";
 import { removeItemFromCart } from "../../redux/features/cart.slice";
+import PromoCode from "../PromoCode/PromoCode";
+import CartSummary from "../CartSummary/CartSummary";
 
+import "./CartPage.css"
 
 export default function CartPage() {
   const dispatch = useDispatch();
@@ -12,10 +15,16 @@ export default function CartPage() {
   };
   return (
     <>
-      <CartWidjet
-        cartItems={cartItems}
-        handleDeteleFromCart={handleDeteleFromCart}
-      />
+      <div className="product-container">
+        <CartWidjet
+          cartItems={cartItems}
+          handleDeteleFromCart={handleDeteleFromCart}
+        />
+        <div className="product-summary">
+          <CartSummary cartItems={cartItems} />
+          <PromoCode />
+        </div>
+      </div>
     </>
   );
 }

@@ -1,0 +1,59 @@
+p {
+  margin: 0px;
+  padding: 0px;
+}
+.input-wrapper {
+  position: relative;
+  display: inline-block;
+  p {
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 20px;
+    color: rgba(112, 121, 140, 1);
+  }
+}
+
+.input-wrapper input {
+  padding-right: 40px;
+  height: 35px;
+  width: 350px;
+  border-radius: 8px;
+  border: 2px solid rgba(247, 245, 247, 1);
+  padding: 5px;
+}
+
+.input-wrapper button {
+  position: absolute;
+  top: 0px;
+  right: 0;
+  border: none;
+  background: rgba(229, 231, 235, 1);
+  cursor: pointer;
+  border-left: 1px solid rgba(247, 245, 247, 1);
+  border-radius: 8px;
+  color: rgba(112, 121, 140, 1);
+  height: 48px;
+  width: 120px;
+}
+.promo-container {
+  height: 150px;
+  top: 453px;
+  left: 933px;
+  border-radius: 16px;
+  border-width: 1px;
+  background: rgba(255, 255, 255, 1);
+  border: 2px solid rgba(247, 245, 247, 1);
+  margin-top: 30px;
+  padding: 10px;
+}
+::placeholder {
+  font-family: Inter;
+  font-weight: 500;
+  font-size: 20px;
+  color: rgba(112, 121, 140, 1);
+  padding-left: 8px;
+}
+
+::-ms-input-placeholder {
+  color: rgba(112, 121, 140, 1);
+}

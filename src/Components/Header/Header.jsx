@@ -21,9 +21,11 @@ function Header() {
   const navigate = useNavigate();
   const handleSearch = (e) => {
     dispatch(setSearchText(e.target.value));
-    if (e.target.value.length > 3) {
+    if (e.target.value.length > 0) {
+      dispatch(
+        getSearchProduct({ searchText: e.target.value, itemsPerPage, skip: 0 })
+      );
       navigate("/products");
-      dispatch(getSearchProduct({ searchText, itemsPerPage, skip: 0 }));
     }
   };
   const productCount = useSelector((state) => state.cart.addProduct.length);
@@ -36,7 +38,7 @@ function Header() {
               <BackNavigation />
             </li>
             <li>
-              <h1 className="header">Desserts</h1>
+              <h1 className="header">Shopper Hub</h1>
             </li>
             <li>
               <ShoppingCart cartItems={productCount} />

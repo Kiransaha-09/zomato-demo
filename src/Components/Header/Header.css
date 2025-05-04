@@ -2,11 +2,15 @@
   margin: 0 auto;
   padding: 0 20px;
   overflow: hidden;
+  border-bottom: 2px solid #F7F5F7;
+  background-color: white;
 }
 
-header {
-  background-color: #333;
-  color: #fff;
+.header {
+  color: rgba(13, 51, 86, 1);
+  font-style: italic;
+  font-size: 26px;
+  
 }
 
 #logo {
@@ -19,9 +23,10 @@ nav {
 }
 
 .nav-links {
-  /* padding: 13px; */
+  padding: 0px;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  margin: 0px;
 }
 
 .nav-links li {
@@ -39,9 +44,4 @@ nav {
 
 .nav-links li a:hover {
   background-color: #555;
-}
-
-.content {
-  padding: 50px 0;
-  text-align: center;
 }

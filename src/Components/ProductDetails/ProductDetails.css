@@ -1,0 +1,13 @@
+.Product-details {
+  align-items: center;
+  padding: 40px;
+}
+.Each-Product {
+  padding: 20px;
+}
+.additional-details {
+  display: flex;
+  padding-left: 20px;
+  align-items: center;
+  font-weight: bold;
+}

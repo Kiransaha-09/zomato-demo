@@ -5,7 +5,7 @@ export default function StarRating({ rating }) {
   const emptyStars = 5 - filledStars;
   return (
     <div className="star-rating">
-      <span> Rating: </span>
+      {/* <span> Rating: </span> */}
       {Array(filledStars)
         .fill()
         .map((_, index) => (

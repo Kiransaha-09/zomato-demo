@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 
+import "./Pagination.css";
+
 export const Pagination = (props) => {
   const [pageArray, setPageArray] = useState([]);
+  const [activePage, setActivePage] = useState(1);
 
   const totalPages = Math.ceil(
     (props.searchText.length > 0 ? props.totalSearchItems : props.totalItems) /
@@ -23,13 +26,20 @@ export const Pagination = (props) => {
     props.itemsPerPage,
     props.searchText,
   ]);
-
   return (
     <div className="pages">
       {pageArray.map((item, index) => {
         return (
-          <div key={index}>
-            <button onClick={() => props.onPageChange(item)}>{item}</button>
+          <div key={index} className="page-btn">
+            <button
+              className={item === activePage ? "active" : ""}
+              onClick={() => {
+                props.onPageChange(item);
+                setActivePage(item);
+              }}
+            >
+              {item}
+            </button>
           </div>
         );
       })}
@@ -38,6 +48,7 @@ export const Pagination = (props) => {
           <select
             value={props.itemsPerPage}
             onChange={(event) => props.onItemsPerPageChange(event)}
+            className="page-dropdown"
           >
             <option value="10">10</option>
             <option value="20">20</option>

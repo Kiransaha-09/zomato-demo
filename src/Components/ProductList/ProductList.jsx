@@ -12,6 +12,8 @@ import {
 } from "../../redux/features/cart.slice";
 import { fetchSearchProduct } from "../../services/productSearchaApi";
 
+import "./ProductList.css"
+
 export default function ProductList() {
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [currentSkip, setCurrentSkip] = useState(0);

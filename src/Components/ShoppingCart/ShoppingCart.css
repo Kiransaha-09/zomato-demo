@@ -1,0 +1,29 @@
+.new-cardpage {
+  height: 48px;
+  width: 48px;
+  background-color: gainsboro;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-left: 836px;
+}
+.shopping_img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+.badge {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: rgba(29, 54, 77, 1);
+  position: absolute;
+  top: -2px;
+  right: -8px;
+}

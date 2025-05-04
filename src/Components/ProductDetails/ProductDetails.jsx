@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import StarRating from "../StarRating/StarRating";
 import ProductReviews from "../ProductReviews/ProductReviews";
 
+import "./ProductDetails.css";
+
 export default function ProductDetails(props) {
   const params = useParams();
 

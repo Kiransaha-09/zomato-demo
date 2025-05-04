@@ -1,0 +1,43 @@
+.checkout-btn {
+  display: flex;
+  justify-content: center;
+  button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 15px;
+    background: rgba(58, 73, 128, 1);
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+}
+.checkout-container {
+  width: 416px;
+  min-height: 280px;
+  padding: 10px;
+  border-radius: 18px;
+  border-width: 1px;
+  border: 2px solid rgba(247, 245, 247, 1);
+}
+.checkout-prices {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  p {
+    font-family: Inter;
+    font-weight: 500;
+    font-size: 18px;
+    color: rgba(102, 112, 133, 1);
+    margin: 6px;
+    padding: 0px;
+  }
+}
+.checkout-info {
+  border-top: 1px solid rgba(229, 231, 235, 1);
+}
+.price {
+  font-family: Inter;
+  font-weight: 700 !important;
+  font-size: 18px;
+  color: rgba(52, 64, 84, 1) !important;
+}

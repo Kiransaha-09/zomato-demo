@@ -1,3 +1,4 @@
+import "./SearchProduct.css"
 export default function SearchProduct(props) {
 
   return (
