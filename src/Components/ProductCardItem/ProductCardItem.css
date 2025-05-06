@@ -1,7 +1,7 @@
 .card-container {
   border-radius: 18px;
   border-width: 1px;
-  border: 1px solid black;
+  border: 1px solid #f7f5f7;
 }
 .product-image {
   background: rgba(247, 245, 247, 1);
@@ -23,9 +23,14 @@
 .product-btn {
   margin-top: 20px;
 }
-.product-price{
-  font-weight: bold;
+.product-price {
+  font-family: Inter;
+  font-weight:700;
+  font-size: 18px;
+  color: #667085;
 }
-.product-name{
-  color:rgb(94, 92, 92);
+.product-name {
+  color: #667085;
+  font-size: 16px;
+  font-weight: 500;
 }

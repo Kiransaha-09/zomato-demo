@@ -1,3 +1,4 @@
+import "./AddProduct.css"
 export default function AddProduct({
   product,
   cartItems = [],
@@ -18,7 +19,7 @@ export default function AddProduct({
   };
 
   return (
-    <button onClick={handleCartAction}>
+    <button onClick={handleCartAction} class="add-btn">
       {isItemAddedToCart ? "Added to Cart" : "Add to Cart"}
     </button>
   );

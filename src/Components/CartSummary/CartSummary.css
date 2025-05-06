@@ -2,18 +2,18 @@
   display: flex;
   justify-content: center;
   button {
-    padding: 8px 16px;
+    padding: 10px 30px;
     border: none;
-    border-radius: 15px;
+    border-radius: 18px;
     background: rgba(58, 73, 128, 1);
     color: white;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 50px;
   }
 }
 .checkout-container {
   width: 416px;
-  min-height: 280px;
+  min-height: 264px;
   padding: 10px;
   border-radius: 18px;
   border-width: 1px;
@@ -40,4 +40,10 @@
   font-weight: 700 !important;
   font-size: 18px;
   color: rgba(52, 64, 84, 1) !important;
+}
+.checkout-heading {
+  font-weight: 700;
+  font-size: 28px;
+  padding-bottom: 12px;
+  margin-left: 8px;
 }

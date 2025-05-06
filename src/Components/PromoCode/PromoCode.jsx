@@ -6,7 +6,7 @@ function PromoCode() {
   return (
     <>
       <div className="promo-container">
-        <h1>Apply Promo code</h1>
+        <p className="Promo-heading">Apply Promo code</p>
         <div class="input-wrapper">
           <input type="text" placeholder="Promo Code" />
           <button>

@@ -10,8 +10,8 @@
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 15px;
-  margin-top: 35px;
+  gap: 25px;
+  margin-top: 20px;
   padding: 35px;
   width: 100%;
 }
@@ -109,27 +109,4 @@
   border: 1px solid black;
   border-radius: 40px;
   cursor: pointer;
-}
-
-.star-rating {
-  display: flex;
-}
-
-.star {
-  font-size: 20px;
-  color: #ccc;
-}
-
-.star.filled {
-  color: rgb(255, 191, 0);
-}
-.reviews {
-  width: 300px;
-  border: 2px ridge black;
-  padding: 50px;
-  margin: 20px;
-}
-.customer-comment {
-  margin: -2px;
-  padding-left: 20px;
 }

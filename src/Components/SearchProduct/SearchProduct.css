@@ -1,7 +1,12 @@
 .search-cart {
-    width: 300px;
-    height: 30px;
-    border: 1px solid rgba(29, 54, 77, 1);
-    color: rgba(29, 54, 77, 1);
-    border-radius: 40px;
-  }
+  width: 300px;
+  height: 30px;
+  border: 1px solid #e4e4e4;
+  color: rgba(29, 54, 77, 1);
+  border-radius: 40px;
+}
+input::placeholder {
+  font-size: 16px;
+  color: #3a4980;
+  font-weight: 500;
+}

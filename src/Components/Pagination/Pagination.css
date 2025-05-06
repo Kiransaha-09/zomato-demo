@@ -1,24 +1,29 @@
 .page-btn {
   button {
     background-color: rgba(247, 245, 247, 1);
-    border: 1px solid rgba(58, 73, 128, 1);
-    border-radius: 50%;
-    height: 25px;
-    width: 25px;
+    border: 1px solid #f3f3f3;
+    height: 30px;
+    width: 30px;
     display: flex;
     align-items: center;
+    color: #667085;
     justify-content: center;
     cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
   }
 }
 .page-dropdown {
-  background-color: rgba(58, 73, 128, 1);
-  color: white;
-  border-radius: 14px;
+  background-color: rgba(247, 245, 247, 1);
+  color: #667085;
+  border: 1px solid #f3f3f3;
   border: none;
-  padding: 4px;
+  padding: 6px;
+  font-size: 14px;
+    font-weight: 600;
 }
 .active {
-  background-color: rgba(58, 73, 128, 1) !important;
-  color: white;
+  color: #667085;
+  background: linear-gradient(75.04deg, #F4E8F3 0%, #F3EFF6 52.07%, #EEE0F9 102.02%)!important;
+
 }

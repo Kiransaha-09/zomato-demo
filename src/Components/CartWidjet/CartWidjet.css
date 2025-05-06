@@ -22,7 +22,7 @@
     border: none;
     color: rgba(37, 99, 235, 1);
     cursor: pointer;
-    padding-top: 80px;
+    padding-top: 75px;
     font-family: Inter;
     font-weight: 500;
     font-size: 16px;
@@ -33,7 +33,7 @@
     font-family: Inter;
     font-weight: 700;
     font-size: 20px;
-    padding-top: 18px;
+    padding-top: 25px;
     color: rgba(26, 26, 26, 1);
   }
 }
@@ -41,7 +41,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  margin-top: 10px;
+  margin-top: 12px;
   span {
     font-weight: bold;
     color: rgba(29, 54, 77, 1);

@@ -1,0 +1,10 @@
+.reviews {
+  width: 300px;
+  border: 2px ridge black;
+  padding: 50px;
+  margin: 20px;
+}
+.customer-comment {
+  margin: -2px;
+  padding-left: 20px;
+}

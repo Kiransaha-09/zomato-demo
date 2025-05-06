@@ -21,7 +21,7 @@ export default function CartWidjet(props) {
             <img src={card.thumbnail} alt="image" />
             <div className="product-info">
               <p>{card.title}</p>
-              <p>Rs {card.price}</p>
+              <p>₹ {card.price}</p>
             </div>
           </div>
           <button onClick={() => props.handleDeteleFromCart(card.id)}>
