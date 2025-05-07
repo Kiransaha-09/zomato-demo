@@ -26,13 +26,13 @@ export default function ProductDetails() {
   const cartItems = useSelector((state) => state.cart.addProduct);
 
   // Handles items added to cart
-  const handleAddToCart = (item) => {
-    dispatch(addItemToCart(item));
+  const handleAddToCart = () => {
+    dispatch(addItemToCart(product));
   };
 
   // Handle delete item from cart
-  const handleDeteleFromCart = (itemId) => {
-    dispatch(removeItemFromCart(itemId));
+  const handleDeteleFromCart = () => {
+    dispatch(removeItemFromCart(product.id));
   };
 
   useEffect(() => {
@@ -109,10 +109,10 @@ export default function ProductDetails() {
               </div>
             </div>
           </div>
-          {/* <div>
-            <ProductReviews reviews={product.reviews} />
-          </div> */}
         </div>
+      </div>
+      <div>
+        <ProductReviews reviews={product.reviews} />
       </div>
     </>
   );

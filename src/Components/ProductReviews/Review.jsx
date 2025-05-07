@@ -1,20 +1,25 @@
 import React from "react";
+import StarRating from "../StarRating/StarRating";
 
 const Review = ({ review, index }) => {
   return (
     <div key={index} className="review-card">
-      <div>
-      <p>
-        {index + 1}. Name: <strong>{review.reviewerName}</strong>
-      </p>
+      <div className="product-avatar">
+        {review.imageUrl ? (
+          <img src={review.imageUrl} alt={review.reviewerName} />
+        ) : (
+          <div className="initial-placeholder">
+            {review.reviewerName[0].toUpperCase()}
+          </div>
+        )}
       </div>
       <div>
-      <p>Rating: {review.rating} ⭐</p>
+        <p class="product-reviewer">{review.reviewerName}</p>
+        <p class="product-star">
+          <StarRating rating={review.rating} />
+        </p>
+        <p className="product-comment">{review.comment}</p>
       </div>
-      {/* <p>
-        Email:<strong>{review.reviewerEmail}</strong>
-      </p> */}
-      <p>Comment: {review.comment}</p>
     </div>
   );
 };

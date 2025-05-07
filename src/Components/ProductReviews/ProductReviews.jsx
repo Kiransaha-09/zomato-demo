@@ -4,7 +4,7 @@ import "./ProductReviews.css";
 export default function ProductReviews({ reviews }) {
   return (
     <>
-      <p className="customer-comment">Customer reviews :</p>
+      <h2 className="customer-comment">Reviews :</h2>
       <div className="reviews">
         {reviews?.map((review, index) => (
           <Review review={review} index={index} />
