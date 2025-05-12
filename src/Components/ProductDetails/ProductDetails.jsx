@@ -4,9 +4,12 @@ import { getProductById } from "../../redux/features/productDetails.slice";
 import { useDispatch, useSelector } from "react-redux";
 import AddProduct from "../AddProduct/AddProduct";
 import ProductReviews from "../ProductReviews/ProductReviews";
+import ProductComments from "../ProductComments/ProductComments";
 
 import vehicleLogo from "../../Assets/Frame (1).svg";
 import cartLogo from "../../Assets/Frame (2).svg";
+import starLogo from "../../Assets/Vector (3).svg";
+import reviewsLogo from "../../Assets/Vector (4).svg";
 
 import "./ProductDetails.css";
 
@@ -17,6 +20,8 @@ import {
 
 export default function ProductDetails() {
   const params = useParams();
+
+  const [comments, setComments] = useState([]);
 
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product.product);
@@ -60,6 +65,10 @@ export default function ProductDetails() {
       </div>
     );
   });
+  const Totaldiscount = product.discountPercentage;
+  const discountedPrice = product.price - (product.price * Totaldiscount) / 100;
+  const productRating = product.rating;
+  const productTotalReviews = product.reviews?.length;
 
   return (
     // Render card details in UI
@@ -77,8 +86,20 @@ export default function ProductDetails() {
             <p className="product-brand">{product.brand}</p>
           </div>
           <div className="eachproduct-price">
-            <p>₹{product.price}</p>
+            <div>
+              <p>₹{discountedPrice.toFixed(2)}</p>
+              <p className="totalprice">₹{product.price}</p>
+            </div>
+            <div className="rating-info">
+              <img src={starLogo} alt="star" />
+              <p className="rating-text">{productRating}</p>
+            </div>
+            <div className="review-info">
+              <img src={reviewsLogo} alt="review" />
+              <p className="review-text">{productTotalReviews} Reviews</p>
+            </div>
           </div>
+
           <div className="eachproduct-btn">
             <AddProduct
               handleAddToCart={handleAddToCart}
@@ -113,6 +134,9 @@ export default function ProductDetails() {
       </div>
       <div>
         <ProductReviews reviews={product.reviews} />
+      </div>
+      <div>
+        <ProductComments />
       </div>
     </>
   );

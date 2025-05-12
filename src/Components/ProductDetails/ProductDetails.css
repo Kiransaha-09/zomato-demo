@@ -38,7 +38,7 @@
 }
 .eachproduct-info {
   padding-bottom: 20px;
-  border-bottom: 2px solid #e4e4e4;
+  border-bottom: 1px solid #e4e4e4;
 }
 
 .image-container {
@@ -76,12 +76,13 @@
   width: 100%;
 }
 .eachproduct-price {
-  /* font-family: "Inter"; */
+  display: flex;
   font-weight: 700;
   font-size: 24px;
   color: #3a4980;
-  border-bottom: 2px solid #e4e4e4;
+  border-bottom: 1px solid #e4e4e4;
   padding: 15px 15px 15px 0px;
+  gap: 35px;
 }
 .eachproduct-btn {
   display: flex;
@@ -117,9 +118,53 @@
   font-family: Inter;
   font-weight: 500;
   font-size: 16px;
-  letter-spacing: 0%;
-  text-decoration: underline;
   text-decoration-style: solid;
   text-decoration-thickness: 0%;
   color: #726c6c;
+}
+.totalprice {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 5px 0px 0px 2px;
+  color: #00000080;
+  text-decoration: line-through;
+}
+.rating-info {
+  display: flex;
+  justify-content: center;
+  width: 80px;
+  height: 24px;
+  gap: 5px;
+  border-radius: 27px;
+  padding-top: 4px;
+  background: #fbf3ea;
+  img {
+    width: 16px;
+    height: 17px;
+  }
+}
+.rating-text {
+  font-family: Inter;
+  font-weight: 600;
+  font-size: 16px;
+  color: #d48d3b;
+}
+.review-info {
+  display: flex;
+  justify-content: center;
+  width: 121px;
+  height: 28px;
+  gap: 7px;
+  border-radius: 27px;
+  align-items: center;
+  background: #edf0f8;
+
+  img {
+    width: 18px;
+    height: 18px;
+  }
+}
+.review-text{
+  font-size: 16px;
+  font-weight: 600;
 }

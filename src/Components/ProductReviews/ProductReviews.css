@@ -1,5 +1,4 @@
 .reviews {
-  width: 300px;
   padding: 10px 0px 0px 50px;
   margin: 20px;
   width: 100%;
@@ -18,7 +17,7 @@
   display: flex;
   gap: 20px;
   border-bottom: 1px solid #ededed;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   padding: 10px;
   img {
     width: 50px;

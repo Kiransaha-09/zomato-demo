@@ -8,6 +8,7 @@ import { API_ROUTES } from "../../constants/apiRoutes.constants";
 import "./ProductCardItem.css";
 
 const ProductCardItem = (props) => {
+  
   return (
     <div>
       <Link
