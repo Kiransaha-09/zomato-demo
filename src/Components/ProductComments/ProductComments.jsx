@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import "./ProductComments.css";
+import ProductRating from "../ProductRating/ProductRating";
 
 function ProductComments() {
   const [comments, setComments] = useState([]);
@@ -21,9 +22,11 @@ function ProductComments() {
       {comments.length === 0 ? (
         <>
           <h2 className="comment-header">Write a Review:</h2>
+          <p className="product-rate">What is it like to Product?</p>
+          <ProductRating/>
           <div className="comment-main">
+            <p className="title">Review Title</p>
             <textarea
-              placeholder="Add Reviews here..."
               className="comment-container"
               value={newComment}
               onChange={handleInputChange}
@@ -34,7 +37,7 @@ function ProductComments() {
       ) : (
         <>
           <div>
-            <p className="comment-box">{comments.join(", ")}</p>
+            <p className="comment-box">{comments}</p>
           </div>
         </>
       )}

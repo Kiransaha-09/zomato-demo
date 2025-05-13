@@ -1,0 +1,8 @@
+.product-stars {
+  padding-left: 75px;
+  cursor: pointer;
+  color: #ccc;
+}
+.eachstar:hover {
+  color: #e59819;
+}
