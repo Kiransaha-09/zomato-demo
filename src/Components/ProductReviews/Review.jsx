@@ -1,9 +1,9 @@
 import React from "react";
 import StarRating from "../StarRating/StarRating";
 
-const Review = ({ review, index }) => {
+const Review = ({ review}) => {
   return (
-    <div key={index} className="review-card">
+    <div key={review.id} className="review-card">
       <div className="product-avatar">
         {review.imageUrl ? (
           <img src={review.imageUrl} alt={review.reviewerName} />

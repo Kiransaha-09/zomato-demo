@@ -1,14 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import "./ProductComments.css";
 import ProductRating from "../ProductRating/ProductRating";
+import Review from "../ProductReviews/Review";
 
 function ProductComments() {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
+  const [selectedRating, setSelectedRating] = useState(null);
+  const reviewDetails = {
+    comment: comments,
+    date: new Date().getDate(),
+    rating: selectedRating,
+    reviewerName: "Kiran Saha",
+  };
 
   const handleInputChange = (event) => {
     setNewComment(event.target.value);
+  };
+
+  const handleClick = (index) => {
+    setSelectedRating(index + 1);
   };
 
   const handleCommentSubmit = () => {
@@ -23,7 +35,10 @@ function ProductComments() {
         <>
           <h2 className="comment-header">Write a Review:</h2>
           <p className="product-rate">What is it like to Product?</p>
-          <ProductRating/>
+          <ProductRating
+            handleClick={handleClick}
+            selectedRating={selectedRating}
+          />
           <div className="comment-main">
             <p className="title">Review Title</p>
             <textarea
@@ -36,8 +51,8 @@ function ProductComments() {
         </>
       ) : (
         <>
-          <div>
-            <p className="comment-box">{comments}</p>
+          <div className="reviews">
+            <Review review={reviewDetails} />
           </div>
         </>
       )}

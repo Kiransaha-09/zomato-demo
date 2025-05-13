@@ -3,6 +3,6 @@
   cursor: pointer;
   color: #ccc;
 }
-.eachstar:hover {
+.eachstar{
   color: #e59819;
 }
